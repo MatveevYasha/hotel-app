@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_app/ui/common_widgets/carousel_with_indicator.dart';
+import 'package:hotel_app/ui/global_widgets/carousel_with_indicator.dart';
 
-import '../common_widgets/hotel_app_bar.dart';
+import '../global_widgets/hotel_app_bar.dart';
 
 class HotelPage extends StatelessWidget {
   const HotelPage({super.key});

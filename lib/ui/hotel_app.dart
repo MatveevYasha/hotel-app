@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'hotel_page/hotel_page.dart';
+
+final dio = Dio();
 
 class HotelApp extends StatelessWidget {
   const HotelApp({super.key});

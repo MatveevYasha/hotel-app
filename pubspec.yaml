@@ -16,11 +16,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.2.1
 
+# for data
+  dio: ^5.3.2
+  json_annotation: ^4.8.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  # for data
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.6
 
 flutter:
   uses-material-design: true
