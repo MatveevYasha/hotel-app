@@ -1,5 +1,6 @@
-import 'package:hotel_app/data/models/hotelApi/about_the_hotel.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'about_the_hotel.dart';
 
 part 'hotel.g.dart';
 

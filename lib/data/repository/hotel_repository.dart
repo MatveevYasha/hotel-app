@@ -1,5 +1,5 @@
 import '../../ui/hotel_app.dart';
-import '../models/hotelApi/hotel.dart';
+import '../models/hotel_page/hotel.dart';
 
 abstract class HotelRepository {
   const HotelRepository();
