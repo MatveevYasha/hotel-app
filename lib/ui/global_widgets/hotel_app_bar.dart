@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/ui/theme/text_theme.dart';
 
 class HotelAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -15,7 +16,10 @@ class HotelAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      title: Text(title),
+      title: Text(
+        title,
+        style: textTheme.titleLarge,
+      ),
     );
   }
 }

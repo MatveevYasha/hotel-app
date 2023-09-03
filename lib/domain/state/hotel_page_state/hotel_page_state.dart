@@ -3,8 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotel_app/data/repository/hotel_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../data/models/hotel_page/about_the_hotel.dart';
-import '../../../data/models/hotel_page/hotel.dart';
+import '/data/models/hotel_page/about_the_hotel.dart';
+import '/data/models/hotel_page/hotel.dart';
 
 part 'hotel_page_state.freezed.dart';
 
@@ -37,10 +37,12 @@ class HotelPageState extends _$HotelPageState {
 
   Future<void> getHotelData() async {
     try {
-      final hotel = await const ConstHotelRepository().loadProducts();
+      final hotel = await const ConstHotelRepository().loadHotels();
 
       state = state.copyWith(hotel: hotel, isLoading: false);
     } catch (e) {
+      debugPrint('Exception: $e');
+
       state = state.copyWith(hasLoadingError: true, isLoading: false);
     }
   }
