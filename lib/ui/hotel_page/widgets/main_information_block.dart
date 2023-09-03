@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/models/hotel_page/hotel.dart';
+import '../../global_widgets/carousel_with_indicator.dart';
 import '../../global_widgets/layout_widget.dart';
-import '../../theme/text_theme.dart';
 import 'base_information_about_hotel.dart';
-import 'chips_widget.dart';
 import 'price_row_widget.dart';
 
 class MainInformationBlock extends StatelessWidget {
+  final Hotel data;
+
   const MainInformationBlock({
+    required this.data,
     super.key,
   });
 
@@ -18,16 +21,13 @@ class MainInformationBlock extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // TODO: Кешировать картинки
-          // const CarouselWithIndicator(),
-          Container(
-            height: 250,
-            color: Colors.amber[200],
+          CarouselWithIndicator(
+            images: data.imageUrls,
           ),
-          // Text(state.hotel.name),
           const BaseInformationAboutHotel(),
-          const PriceRowWidget(
-            price: 134673,
-            description: 'за тур с перелётом',
+          PriceRowWidget(
+            price: data.minimalPrice,
+            description: data.priceForIt,
           ),
         ],
       ),

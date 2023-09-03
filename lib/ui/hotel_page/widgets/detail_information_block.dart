@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/ui/global_widgets/layout_widget.dart';
 
+import '../../../resources/resources.dart';
+import '/data/models/hotel_page/about_the_hotel.dart';
 import '../../theme/text_theme.dart';
-import '../hotel_page.dart';
 import 'category_button.dart';
 import 'chips_widget.dart';
 
 class DetailInformationBlock extends StatelessWidget {
+  final AboutTheHotel data;
+
   const DetailInformationBlock({
+    required this.data,
     super.key,
   });
 
@@ -25,7 +29,7 @@ class DetailInformationBlock extends StatelessWidget {
             ),
           ),
           Wrap(
-            children: wrapList
+            children: data.peculiarities
                 .map(
                   (e) => Padding(
                     padding: const EdgeInsets.only(right: 8, bottom: 8),
@@ -40,7 +44,7 @@ class DetailInformationBlock extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 16),
             child: Text(
-              'Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!',
+              data.description,
               style: textTheme.bodySmall,
             ),
           ),
@@ -57,7 +61,7 @@ class DetailInformationBlock extends StatelessWidget {
                 children: [
                   const CategoryButton(
                     title: 'Удобства',
-                    icon: Icons.ac_unit,
+                    iconName: SvgIcons.emojiHappy,
                   ),
                   Padding(
                     // TODO: Попробовать использовать ключ
@@ -68,7 +72,7 @@ class DetailInformationBlock extends StatelessWidget {
                   ),
                   const CategoryButton(
                     title: 'Что включено',
-                    icon: Icons.ac_unit,
+                    iconName: SvgIcons.tickSquare,
                   ),
                   Padding(
                     // TODO: Попробовать использовать ключ
@@ -79,7 +83,7 @@ class DetailInformationBlock extends StatelessWidget {
                   ),
                   const CategoryButton(
                     title: 'Что не включено',
-                    icon: Icons.ac_unit,
+                    iconName: SvgIcons.closeSquare,
                   ),
                 ],
               ),

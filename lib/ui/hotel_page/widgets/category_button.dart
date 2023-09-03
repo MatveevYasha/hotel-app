@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../theme/text_theme.dart';
 
 class CategoryButton extends StatelessWidget {
   final String title;
   final String subtitle;
-  final IconData? icon;
+  final String iconName;
 
   const CategoryButton({
     required this.title,
     this.subtitle = 'Самое необходимое',
-    required this.icon,
+    required this.iconName,
     super.key,
   });
 
@@ -20,8 +21,8 @@ class CategoryButton extends StatelessWidget {
       onTap: () {},
       child: Row(
         children: [
-          Icon(
-            icon,
+          SvgPicture.asset(
+            iconName,
           ),
           Expanded(
             child: Padding(
