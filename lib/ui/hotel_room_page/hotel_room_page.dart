@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hotel_app/domain/state/hotel_room_page_state/hotel_room_page_state.dart';
 import 'package:hotel_app/ui/global_widgets/custom_navigation_button.dart';
 import 'package:hotel_app/ui/global_widgets/hotel_app_bar.dart';
 import 'package:hotel_app/ui/global_widgets/layout_widget.dart';
 
 import '../booking_page/booking_page.dart';
+import '../global_widgets/carousel_with_indicator.dart';
 import '../hotel_page/widgets/chips_widget.dart';
 import '../hotel_page/widgets/price_row_widget.dart';
 import '../theme/text_theme.dart';
 
-class HotelRoomPage extends StatelessWidget {
+class HotelRoomPage extends ConsumerWidget {
   final String title;
 
   const HotelRoomPage({
@@ -17,65 +20,97 @@ class HotelRoomPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(hotelRoomPageStateProvider);
+
+    if (state.isLoading) {
+      return const Material(
+        child: Center(
+          child: CircularProgressIndicator(
+            color: Colors.blue,
+          ),
+        ),
+      );
+    }
+
+    if (state.isLoading) {
+      return const Material(
+        child: Center(
+          child: Text('При загрузке данных произошла ошибка'),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: HotelAppBar(title: title),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            LayoutWidget(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 250,
-                  color: Colors.amber[200],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    'Стандартный с видом на бассейн или сад',
-                    style: textTheme.bodyMedium,
+      body: ListView.builder(
+        itemCount: state.hotelRooms.rooms.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              const SizedBox(height: 8),
+              LayoutWidget(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // TODO: обойти ловушку с картинками
+                  CarouselWithIndicator(
+                    images: state.hotelRooms.rooms[index].imageUrls,
                   ),
-                ),
-                // TODO: wrap and data
-                const ChipsWidget(
-                  title: 'Все включено',
-                  color: Color(0xFF828796),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: ChipsWidget(
-                    title: 'Подробнее о номере',
-                    // TODO: add color theme
-                    color: Color(0xFF0D72FF),
-                    hasTrailingIcon: true,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      state.hotelRooms.rooms[index].name,
+                      style: textTheme.bodyMedium,
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: PriceRowWidget(
-                    price: 186600,
-                    description: 'за 7 ночей с перелётом',
-                  ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: CustomNavigationButton(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const BookingPage(),
+                  // TODO: wrap and data
+                  Wrap(
+                    children: state.hotelRooms.rooms[index].peculiarities
+                        .map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.only(right: 8, bottom: 8),
+                            child: ChipsWidget(
+                              title: e,
+                              color: const Color(0xFF828796),
+                            ),
                           ),
-                        );
-                      },
-                      title: 'Выбрать номер'),
-                ),
-              ],
-            ))
-          ],
-        ),
+                        )
+                        .toList(),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: ChipsWidget(
+                      title: 'Подробнее о номере',
+                      // TODO: add color theme
+                      color: Color(0xFF0D72FF),
+                      hasTrailingIcon: true,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: PriceRowWidget(
+                      price: state.hotelRooms.rooms[index].price,
+                      description: state.hotelRooms.rooms[index].pricePer,
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: CustomNavigationButton(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const BookingPage(),
+                            ),
+                          );
+                        },
+                        title: 'Выбрать номер'),
+                  ),
+                ],
+              ))
+            ],
+          );
+        },
       ),
     );
   }

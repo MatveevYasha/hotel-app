@@ -6,7 +6,7 @@ part of 'hotel_page_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$hotelPageStateHash() => r'052f7399355f8c7d85fe3163798b3607cfa534f2';
+String _$hotelPageStateHash() => r'8dd897b623706e844fe08525baedb769ad19c5b2';
 
 /// See also [HotelPageState].
 @ProviderFor(HotelPageState)
