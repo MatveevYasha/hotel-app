@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hotel_app/ui/hotel_page/hotel_page.dart';
 import 'package:hotel_app/ui/theme/text_theme.dart';
@@ -12,6 +14,8 @@ class SuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int randomNumber = Random().nextInt(999999);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const HotelAppBar(title: 'Заказ оплачен'),
@@ -22,11 +26,18 @@ class SuccessPage extends StatelessWidget {
             const Spacer(),
             Container(
               decoration: const BoxDecoration(
-                color: Colors.amber,
+                color: Color(0xFFF6F6F9),
                 shape: BoxShape.circle,
               ),
               height: 100,
               width: 100,
+              child: const Image(
+                image: AssetImage(
+                  'assets/color_icons/party_popper.png',
+                ),
+                height: 44,
+                width: 44,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 32),
@@ -38,7 +49,8 @@ class SuccessPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                'Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
+                'Подтверждение заказа №$randomNumber может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
+                textAlign: TextAlign.center,
                 style: textTheme.bodySmall?.copyWith(
                   color: const Color(0xFF828796),
                 ),
@@ -49,7 +61,6 @@ class SuccessPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBlock(
-        // TODO: removeback button to hotel page
         title: 'Супер!',
         onTap: () {
           Navigator.of(context).pushReplacement(

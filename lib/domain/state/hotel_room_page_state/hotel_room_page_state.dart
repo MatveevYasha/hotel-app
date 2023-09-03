@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotel_app/data/models/hotel_room_page/hotel_rooms.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../data/repository/hotel_rooms_repositor.dart';
+import '../../../data/repository/hotel_rooms_repository.dart';
 
 part 'hotel_room_page_state.freezed.dart';
 

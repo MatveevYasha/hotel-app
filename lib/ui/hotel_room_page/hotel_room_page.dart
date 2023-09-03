@@ -64,7 +64,7 @@ class HotelRoomPage extends ConsumerWidget {
                       style: textTheme.bodyMedium,
                     ),
                   ),
-                  // TODO: wrap and data
+
                   Wrap(
                     children: state.hotelRooms.rooms[index].peculiarities
                         .map(

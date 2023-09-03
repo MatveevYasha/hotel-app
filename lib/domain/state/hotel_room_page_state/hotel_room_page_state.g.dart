@@ -7,7 +7,7 @@ part of 'hotel_room_page_state.dart';
 // **************************************************************************
 
 String _$hotelRoomPageStateHash() =>
-    r'29d04908160ce85159287cdf59951a42fe32ac87';
+    r'd75ffd0275d3c7e22dcd7213bed2dc1a5829312b';
 
 /// See also [HotelRoomPageState].
 @ProviderFor(HotelRoomPageState)

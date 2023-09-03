@@ -3,10 +3,12 @@ import 'package:hotel_app/ui/theme/text_theme.dart';
 
 class HotelAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool addBackButton;
 
   const HotelAppBar({
     super.key,
     required this.title,
+    this.addBackButton = true,
   });
 
   @override
@@ -16,6 +18,7 @@ class HotelAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
+      automaticallyImplyLeading: addBackButton,
       title: Text(
         title,
         style: textTheme.titleLarge,

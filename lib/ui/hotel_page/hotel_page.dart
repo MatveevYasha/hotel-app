@@ -34,7 +34,10 @@ class HotelPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: const HotelAppBar(title: 'Отель'),
+      appBar: const HotelAppBar(
+        title: 'Отель',
+        addBackButton: false,
+      ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
           color: Color(0xFFF6F6F9),
@@ -57,7 +60,6 @@ class HotelPage extends ConsumerWidget {
       bottomNavigationBar: BottomNavigationBlock(
         title: 'К выбору номера',
         onTap: () {
-          // TODO: pushReplacement для последнего экрана
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => const HotelRoomPage(
