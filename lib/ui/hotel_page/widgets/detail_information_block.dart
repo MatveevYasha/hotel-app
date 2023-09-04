@@ -64,7 +64,6 @@ class DetailInformationBlock extends StatelessWidget {
                     iconName: SvgIcons.emojiHappy,
                   ),
                   Padding(
-                    // TODO: Попробовать использовать ключ
                     padding: const EdgeInsets.only(left: 32),
                     child: Divider(
                       color: const Color(0xFF828796).withOpacity(0.15),
@@ -75,7 +74,6 @@ class DetailInformationBlock extends StatelessWidget {
                     iconName: SvgIcons.tickSquare,
                   ),
                   Padding(
-                    // TODO: Попробовать использовать ключ
                     padding: const EdgeInsets.only(left: 32),
                     child: Divider(
                       color: const Color(0xFF828796).withOpacity(0.15),

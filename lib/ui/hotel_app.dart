@@ -15,7 +15,6 @@ class HotelApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         colorScheme: const ColorScheme.light().copyWith(
-          // TODO: разобраться с цветами
           background: const Color(0xFFF6F6F9),
           primary: const Color(0xFF0D72FF),
         ),

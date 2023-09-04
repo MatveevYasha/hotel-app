@@ -58,6 +58,7 @@ class _TouristWidgetState extends State<TouristWidget> {
                         },
                         icon: Icons.keyboard_arrow_up,
                       ),
+                      // TODO: Дозаполнить туриста (текст филды)
                       Container(
                         height: 100,
                         color: Colors.red,
@@ -65,6 +66,7 @@ class _TouristWidgetState extends State<TouristWidget> {
                     ],
                   ),
                 )
+              // TODO: посмотреть как все это будет выглядеть на маленьком экране
               : LayoutWidget(
                   key: const ValueKey('close'),
                   child: TouristHeaderWidget(

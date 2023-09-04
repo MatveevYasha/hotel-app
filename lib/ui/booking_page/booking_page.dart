@@ -4,7 +4,6 @@ import 'package:hotel_app/domain/state/booking_state/booking_state.dart';
 import 'package:hotel_app/ui/global_widgets/layout_widget.dart';
 import 'package:hotel_app/ui/hotel_page/widgets/base_information_about_hotel.dart';
 import 'package:hotel_app/ui/theme/text_theme.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../global_widgets/bottom_navigation_block.dart';
 import '../global_widgets/hotel_app_bar.dart';
@@ -27,12 +26,6 @@ class BookingPage extends ConsumerStatefulWidget {
 class _BookingPageConsumerState extends ConsumerState<BookingPage> {
   List<int> listTourists = [1];
   late int _totalPrice;
-
-  // MaskTextInputFormatter maskNumberFormatter = MaskTextInputFormatter(
-  //   mask: '+7 (###) ###-##-##',
-  //   filter: {"#": RegExp(r'[0-9]')},
-  //   type: MaskAutoCompletionType.lazy,
-  // );
 
   @override
   Widget build(BuildContext context) {
@@ -115,15 +108,12 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
                       'Информация о покупателе',
                       style: textTheme.bodyMedium,
                     ),
-                    CustomTextFieldWidget(
-                      // mask: maskNumberFormatter,
+                    const CustomTextFieldWidget(
                       keyboardType: TextInputType.phone,
                       labelText: 'Номер телефона',
                     ),
                     const SizedBox(height: 8),
-                    CustomTextFieldWidget(
-                      // TODO: посмотреть другую валидацию
-                      // mask: maskEmailFormatter,
+                    const CustomTextFieldWidget(
                       keyboardType: TextInputType.emailAddress,
                       labelText: 'Почта',
                     ),
@@ -175,7 +165,6 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
                     // TODO: шрифт посмотреть что точно правильный
                     CustomTextCostRowWidget(
                       leftText: 'Тур',
-                      // TODO: разделить цену
                       rightText: '${state.booking.tourPrice} ₽',
                       removeTopPadding: true,
                     ),
@@ -206,16 +195,12 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
         title: 'Оплатить $_totalPrice ₽',
         onTap: () {
           if (_formKey.currentState!.validate()) {
-            print('success');
-          } else {
-            print('NOT success!!!');
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SuccessPage(),
+              ),
+            );
           }
-
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => const SuccessPage(),
-          //   ),
-          // );
         },
       ),
     );
