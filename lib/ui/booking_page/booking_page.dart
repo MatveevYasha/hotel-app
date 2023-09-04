@@ -5,14 +5,15 @@ import 'package:hotel_app/ui/global_widgets/layout_widget.dart';
 import 'package:hotel_app/ui/hotel_page/widgets/base_information_about_hotel.dart';
 import 'package:hotel_app/ui/theme/text_theme.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-// import 'package:intl/intl.dart';
 
 import '../global_widgets/bottom_navigation_block.dart';
 import '../global_widgets/hotel_app_bar.dart';
 import '../success_page/success_page.dart';
 import 'widgets/custom_text_cost_row_widget.dart';
+import 'widgets/custom_text_field_widget.dart';
 import 'widgets/custom_text_row_widget.dart';
 import 'widgets/small_button_widget.dart';
+import 'widgets/tourist_widget.dart';
 
 class BookingPage extends ConsumerStatefulWidget {
   const BookingPage({super.key});
@@ -22,11 +23,8 @@ class BookingPage extends ConsumerStatefulWidget {
 }
 
 class _BookingPageConsumerState extends ConsumerState<BookingPage> {
-  List<int> list = [1];
+  List<int> listTourists = [1];
   late int _totalPrice;
-  FocusNode focusNode = FocusNode();
-
-  TextEditingController numberController = TextEditingController(text: '+7');
 
   MaskTextInputFormatter maskNumberFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
@@ -34,15 +32,10 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
     type: MaskAutoCompletionType.lazy,
   );
 
-  // String _howManyTourists(int tourists) => Intl.plural(
-  //       tourists,
-  //       // zero: 'Опыт - менее одного года',
-  //       one: 'Первый',
-  //       few: 'Второй',
-  //       // many: 'Опыт - $years лет',
-  //       // other: 'Опыт',
-  //       locale: 'ru_RU',
-  //     );
+  MaskTextInputFormatter maskEmailFormatter = MaskTextInputFormatter(
+    filter: {"#": RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -123,31 +116,17 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
                     'Информация о покупателе',
                     style: textTheme.bodyMedium,
                   ),
-                  TextFormField(
-                    controller: numberController,
-                    focusNode: focusNode,
-                    inputFormatters: [maskNumberFormatter],
-                    decoration: InputDecoration(
-                      labelStyle: textTheme.bodySmall?.copyWith(
-                        color: const Color(0xFF828796),
-                        fontSize: focusNode.hasFocus ? 12 : 17,
-                      ),
-                      labelText: 'Номер телефона',
-                      filled: true,
-                      fillColor: const Color(0xFFF6F6F9),
-                      focusedBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFF6F6F9),
-                        ),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFF6F6F9),
-                        ),
-                      ),
-                    ),
+                  CustomTextFieldWidget(
+                    mask: maskNumberFormatter,
+                    keyboardType: TextInputType.phone,
+                    labelText: 'Номер телефона',
+                  ),
+                  const SizedBox(height: 8),
+                  CustomTextFieldWidget(
+                    // TODO: посмотреть другую валидацию
+                    mask: maskEmailFormatter,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: 'Почта',
                   ),
                   Text(
                     'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту',
@@ -160,30 +139,13 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
               ),
             ),
             const SizedBox(height: 8),
+            // TODO: сделать что нибудь со скролом (посмотреть видео может быть)
             ListView.builder(
               shrinkWrap: true,
-              itemCount: list.length,
+              itemCount: listTourists.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    LayoutWidget(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // TODO: AnimatedContainer
-                          Text(
-                            '${index + 1}й турист',
-                            style: textTheme.bodyMedium,
-                          ),
-                          SmallButtonWidget(
-                            onTap: () {},
-                            icon: Icons.keyboard_arrow_down,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                  ],
+                return TouristWidget(
+                  index: index,
                 );
               },
             ),
@@ -198,7 +160,7 @@ class _BookingPageConsumerState extends ConsumerState<BookingPage> {
                   SmallButtonWidget(
                     onTap: () {
                       setState(() {
-                        list.add(1);
+                        listTourists.add(1);
                       });
                     },
                     icon: Icons.add,
