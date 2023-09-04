@@ -4,13 +4,13 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../theme/text_theme.dart';
 
 class CustomTextFieldWidget extends StatefulWidget {
-  final MaskTextInputFormatter mask;
+  // final MaskTextInputFormatter mask;
   final TextInputType? keyboardType;
   final String labelText;
 
   const CustomTextFieldWidget({
     super.key,
-    required this.mask,
+    // this.mask,
     required this.labelText,
     this.keyboardType,
   });
@@ -20,8 +20,15 @@ class CustomTextFieldWidget extends StatefulWidget {
 }
 
 class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
+  MaskTextInputFormatter maskNumberFormatter = MaskTextInputFormatter(
+    mask: '+7 (###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
+
   FocusNode focusNode = FocusNode();
   final TextEditingController _controller = TextEditingController();
+  bool _isValid = true;
 
   @override
   void dispose() {
@@ -32,6 +39,38 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          setState(() {
+            _isValid = false;
+          });
+
+          return '';
+        }
+
+        if (widget.keyboardType == TextInputType.phone) {
+          if (value.length != 18 || value.contains(RegExp(r'[*]'))) {
+            setState(() {
+              _isValid = false;
+            });
+            return '';
+          }
+        }
+
+        if (widget.keyboardType == TextInputType.emailAddress) {
+          if (!value.contains(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"))) {
+            setState(() {
+              _isValid = false;
+            });
+            return '';
+          }
+        }
+
+        setState(() {
+          _isValid = true;
+        });
+        return null;
+      },
       controller: _controller,
       focusNode: focusNode,
       keyboardType: widget.keyboardType,
@@ -57,7 +96,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
           };
         }
       },
-      inputFormatters: [widget.mask],
+      inputFormatters: (widget.keyboardType == TextInputType.phone) ? [maskNumberFormatter] : null,
       decoration: InputDecoration(
         labelStyle: textTheme.bodySmall?.copyWith(
           color: const Color(0xFF828796),
@@ -65,7 +104,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
         ),
         labelText: widget.labelText,
         filled: true,
-        fillColor: const Color(0xFFF6F6F9),
+        fillColor: _isValid ? const Color(0xFFF6F6F9) : const Color(0xFFEB5757).withOpacity(0.15),
         focusedBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(
@@ -76,6 +115,12 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(
             color: Color(0xFFF6F6F9),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: const Color(0xFFEB5757).withOpacity(0.15),
           ),
         ),
       ),
