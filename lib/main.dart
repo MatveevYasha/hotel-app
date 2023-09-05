@@ -4,6 +4,8 @@ import 'package:hotel_app/ui/hotel_app.dart';
 
 void main() {
   runApp(
-    const ProviderScope(child: HotelApp()),
+    const ProviderScope(
+      child: HotelApp(),
+    ),
   );
 }
