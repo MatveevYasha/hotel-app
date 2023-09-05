@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../resources/helper.dart';
+import '../../theme/color_scheme.dart';
 import '../../theme/text_theme.dart';
 
 class PriceRowWidget extends StatelessWidget {
@@ -18,17 +20,19 @@ class PriceRowWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          'от ${'$price'.substring(0, 3)} ${'$price'.substring(3, 6)} ₽',
+          'от ${converAmount(price)} ₽',
           style: textTheme.bodyLarge,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Text(
-            description,
-            style: textTheme.bodySmall?.copyWith(
-              color: const Color(0xFF828796),
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Text(
+              description,
+              style: textTheme.bodySmall?.copyWith(
+                color: colorScheme.secondary,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
-            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

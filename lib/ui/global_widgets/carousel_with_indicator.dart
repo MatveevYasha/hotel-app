@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+
+import '../theme/color_scheme.dart';
 
 class CarouselWithIndicator extends StatefulWidget {
   final List<String> images;
@@ -29,15 +32,21 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: <Widget>[
-                  Image.network(
+                  ExtendedImage.network(
                     item,
                     fit: BoxFit.cover,
+                    loadStateChanged: (ExtendedImageState state) {
+                      if (state.extendedImageLoadState == LoadState.failed) {
+                        return Center(child: Image.asset('assets/images/no_image.png'));
+                      }
+                      return null;
+                    },
                   ),
                   Positioned(
                     bottom: 8,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: colorScheme.onPrimary,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Row(
@@ -57,9 +66,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                               ),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-
-                                // Придумать как сделать безопасней
-                                color: Colors.black.withOpacity(1 - (0.4 * entry.key)),
+                                color: colorScheme.onPrimaryContainer.withOpacity(1 - (0.4 * entry.key)),
                               ),
                             ),
                           );

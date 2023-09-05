@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/color_scheme.dart';
+
 class SmallButtonWidget extends StatelessWidget {
   final VoidCallback onTap;
   final bool fill;
@@ -18,14 +20,14 @@ class SmallButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF0D72FF).withOpacity((fill) ? 1 : 0.2),
+          color: colorScheme.primary.withOpacity((fill) ? 1 : 0.2),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Icon(
             icon,
-            color: (fill) ? Colors.white : const Color(0xFF0D72FF),
+            color: (fill) ? colorScheme.onPrimary : colorScheme.primary,
           ),
         ),
       ),

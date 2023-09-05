@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/color_scheme.dart';
 import '../../theme/text_theme.dart';
 import 'small_button_widget.dart';
 
@@ -31,7 +32,7 @@ class TouristHeaderWidget extends StatelessWidget {
                 'Мы не расчитывали на такое кол-во туристов. Если вы видите это сообщение, напишите нам, чтобы мы сделали наш сервис лучше)',
                 style: textTheme.bodySmall?.copyWith(
                   fontSize: 12,
-                  color: const Color(0xFF828796),
+                  color: colorScheme.secondary,
                 ),
               ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/color_scheme.dart';
 import '../../theme/text_theme.dart';
 
 class CustomTextRowWidget extends StatelessWidget {
@@ -31,7 +32,7 @@ class CustomTextRowWidget extends StatelessWidget {
             child: Text(
               leftText,
               style: textTheme.bodySmall?.copyWith(
-                color: const Color(0xFF828796),
+                color: colorScheme.secondary,
               ),
             ),
           ),

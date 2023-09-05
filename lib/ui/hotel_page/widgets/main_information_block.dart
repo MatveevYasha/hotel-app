@@ -20,7 +20,6 @@ class MainInformationBlock extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: Кешировать картинки
           CarouselWithIndicator(
             images: data.imageUrls,
           ),

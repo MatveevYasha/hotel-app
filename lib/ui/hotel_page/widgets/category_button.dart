@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../theme/color_scheme.dart';
 import '../../theme/text_theme.dart';
 
 class CategoryButton extends StatelessWidget {
@@ -38,7 +39,7 @@ class CategoryButton extends StatelessWidget {
                     subtitle,
                     style: textTheme.titleMedium?.copyWith(
                       fontSize: 14,
-                      color: const Color(0xFF828796),
+                      color: colorScheme.secondary,
                     ),
                   ),
                 ],

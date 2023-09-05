@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/state/hotel_page_state/hotel_page_state.dart';
+import '../../theme/color_scheme.dart';
 import '../../theme/text_theme.dart';
 import 'chips_widget.dart';
 
@@ -24,7 +25,7 @@ class BaseInformationAboutHotel extends ConsumerWidget {
           ),
           child: ChipsWidget(
             title: '${state.hotel.rating} ${state.hotel.ratingName}',
-            color: const Color(0xFFFFA800),
+            color: colorScheme.onSecondary,
             hasLeadingIcon: true,
           ),
         ),
@@ -42,7 +43,7 @@ class BaseInformationAboutHotel extends ConsumerWidget {
             child: Text(
               state.hotel.adress,
               style: textTheme.titleMedium?.copyWith(
-                color: const Color(0xFF0D72FF),
+                color: colorScheme.primary,
                 fontSize: 14,
               ),
             ),

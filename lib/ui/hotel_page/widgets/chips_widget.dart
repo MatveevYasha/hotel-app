@@ -35,9 +35,12 @@ class ChipsWidget extends StatelessWidget {
                   color: color,
                 ),
               ),
-            Text(
-              title,
-              style: textTheme.titleMedium?.copyWith(color: color),
+            Flexible(
+              child: Text(
+                title,
+                style: textTheme.titleMedium?.copyWith(color: color),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             if (hasTrailingIcon)
               Padding(

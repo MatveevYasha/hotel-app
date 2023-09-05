@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/ui/booking_page/widgets/custom_text_field_widget.dart';
 
 import '../../global_widgets/layout_widget.dart';
 import 'tourist_header_widget.dart';
@@ -58,15 +59,37 @@ class _TouristWidgetState extends State<TouristWidget> {
                         },
                         icon: Icons.keyboard_arrow_up,
                       ),
-                      // TODO: Дозаполнить туриста (текст филды)
-                      Container(
-                        height: 100,
-                        color: Colors.red,
-                      )
+                      const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 4, top: 16),
+                            child: CustomTextFieldWidget(labelText: 'Имя'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: CustomTextFieldWidget(labelText: 'Фамилия'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: CustomTextFieldWidget(labelText: 'Дата рождения'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: CustomTextFieldWidget(labelText: 'Гражданство'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: CustomTextFieldWidget(labelText: 'Номер загранпаспорта'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: CustomTextFieldWidget(labelText: 'Срок действия загранпаспорта'),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 )
-              // TODO: посмотреть как все это будет выглядеть на маленьком экране
               : LayoutWidget(
                   key: const ValueKey('close'),
                   child: TouristHeaderWidget(

@@ -6,6 +6,7 @@ import 'package:hotel_app/ui/theme/text_theme.dart';
 
 import '../global_widgets/bottom_navigation_block.dart';
 import '../global_widgets/hotel_app_bar.dart';
+import '../theme/color_scheme.dart';
 
 class SuccessPage extends StatelessWidget {
   const SuccessPage({
@@ -17,7 +18,7 @@ class SuccessPage extends StatelessWidget {
     final int randomNumber = Random().nextInt(999999);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: colorScheme.onPrimary,
       appBar: const HotelAppBar(title: 'Заказ оплачен'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,8 +26,8 @@ class SuccessPage extends StatelessWidget {
           children: [
             const Spacer(),
             Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFF6F6F9),
+              decoration: BoxDecoration(
+                color: colorScheme.background,
                 shape: BoxShape.circle,
               ),
               height: 100,
@@ -52,7 +53,7 @@ class SuccessPage extends StatelessWidget {
                 'Подтверждение заказа №$randomNumber может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
                 textAlign: TextAlign.center,
                 style: textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFF828796),
+                  color: colorScheme.secondary,
                 ),
               ),
             ),

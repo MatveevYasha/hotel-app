@@ -9,6 +9,7 @@ import '../booking_page/booking_page.dart';
 import '../global_widgets/carousel_with_indicator.dart';
 import '../hotel_page/widgets/chips_widget.dart';
 import '../hotel_page/widgets/price_row_widget.dart';
+import '../theme/color_scheme.dart';
 import '../theme/text_theme.dart';
 
 class HotelRoomPage extends ConsumerWidget {
@@ -24,10 +25,10 @@ class HotelRoomPage extends ConsumerWidget {
     final state = ref.watch(hotelRoomPageStateProvider);
 
     if (state.isLoading) {
-      return const Material(
+      return Material(
         child: Center(
           child: CircularProgressIndicator(
-            color: Colors.blue,
+            color: colorScheme.primary,
           ),
         ),
       );
@@ -53,7 +54,6 @@ class HotelRoomPage extends ConsumerWidget {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // TODO: обойти ловушку с картинками
                   CarouselWithIndicator(
                     images: state.hotelRooms.rooms[index].imageUrls,
                   ),
@@ -64,7 +64,6 @@ class HotelRoomPage extends ConsumerWidget {
                       style: textTheme.bodyMedium,
                     ),
                   ),
-
                   Wrap(
                     children: state.hotelRooms.rooms[index].peculiarities
                         .map(
@@ -72,18 +71,17 @@ class HotelRoomPage extends ConsumerWidget {
                             padding: const EdgeInsets.only(right: 8, bottom: 8),
                             child: ChipsWidget(
                               title: e,
-                              color: const Color(0xFF828796),
+                              color: colorScheme.secondary,
                             ),
                           ),
                         )
                         .toList(),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: ChipsWidget(
                       title: 'Подробнее о номере',
-                      // TODO: add color theme
-                      color: Color(0xFF0D72FF),
+                      color: colorScheme.primary,
                       hasTrailingIcon: true,
                     ),
                   ),

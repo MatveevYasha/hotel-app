@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/ui/theme/color_scheme.dart';
 
 import '../../theme/text_theme.dart';
 
@@ -31,7 +32,7 @@ class CustomTextCostRowWidget extends StatelessWidget {
           Text(
             leftText,
             style: textTheme.bodySmall?.copyWith(
-              color: const Color(0xFF828796),
+              color: colorScheme.secondary,
             ),
           ),
           Text(
@@ -39,7 +40,7 @@ class CustomTextCostRowWidget extends StatelessWidget {
             style: (costTextIsAccent)
                 ? textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xFF0D72FF),
+                    color: colorScheme.primary,
                   )
                 : textTheme.bodySmall,
           ),

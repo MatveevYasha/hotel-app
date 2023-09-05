@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/color_scheme.dart';
+
 class LayoutWidget extends StatelessWidget {
   final Widget child;
 
@@ -12,7 +14,7 @@ class LayoutWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: colorScheme.onPrimary,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(

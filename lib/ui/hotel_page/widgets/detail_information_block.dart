@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel_app/ui/global_widgets/layout_widget.dart';
 
 import '../../../resources/resources.dart';
+import '../../theme/color_scheme.dart';
 import '/data/models/hotel_page/about_the_hotel.dart';
 import '../../theme/text_theme.dart';
 import 'category_button.dart';
@@ -35,7 +36,7 @@ class DetailInformationBlock extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8, bottom: 8),
                     child: ChipsWidget(
                       title: e,
-                      color: const Color(0xFF828796),
+                      color: colorScheme.secondary,
                     ),
                   ),
                 )
@@ -49,9 +50,9 @@ class DetailInformationBlock extends StatelessWidget {
             ),
           ),
           DecoratedBox(
-            decoration: const BoxDecoration(
-              color: Color(0xFFF6F6F9),
-              borderRadius: BorderRadius.all(
+            decoration: BoxDecoration(
+              color: colorScheme.background,
+              borderRadius: const BorderRadius.all(
                 Radius.circular(16),
               ),
             ),
@@ -66,7 +67,7 @@ class DetailInformationBlock extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 32),
                     child: Divider(
-                      color: const Color(0xFF828796).withOpacity(0.15),
+                      color: colorScheme.secondary.withOpacity(0.15),
                     ),
                   ),
                   const CategoryButton(
@@ -76,7 +77,7 @@ class DetailInformationBlock extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 32),
                     child: Divider(
-                      color: const Color(0xFF828796).withOpacity(0.15),
+                      color: colorScheme.secondary.withOpacity(0.15),
                     ),
                   ),
                   const CategoryButton(

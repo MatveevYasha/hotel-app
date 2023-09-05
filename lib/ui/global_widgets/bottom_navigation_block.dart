@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/color_scheme.dart';
 import 'custom_navigation_button.dart';
 
 class BottomNavigationBlock extends StatelessWidget {
@@ -15,7 +16,7 @@ class BottomNavigationBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: colorScheme.onPrimary),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
